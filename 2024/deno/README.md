@@ -4,7 +4,7 @@
 
 [Take part in the event](https://adventofcode.com/2024)
 
-[Adevent of Code with Deno](https://deno.com/blog/advent-of-code-2024)
+[Advent of Code with Deno](https://deno.com/blog/advent-of-code-2024)
 
 ## How to run
 
