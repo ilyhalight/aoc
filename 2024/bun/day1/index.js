@@ -1,6 +1,6 @@
-import { getFile } from "../../utils/utils";
+import { getFile } from "../../../utils/bun/utils";
 
-const input = await getFile(import.meta.dir);
+const input = await getFile(import.meta);
 
 const [left, right] = input
   .split("\n")
@@ -17,12 +17,12 @@ const [left, right] = input
   )
   .map((pairs) => pairs.sort());
 
-let totalDistance = left.reduce(
+const totalDistance = left.reduce(
   (total, current, idx) => (total += Math.abs(current - right[idx])),
   0
 );
 
-let similarityScore = left.reduce(
+const similarityScore = left.reduce(
   (total, current) =>
     (total += current * right.filter((val) => val === current).length),
   0
