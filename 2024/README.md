@@ -8,5 +8,5 @@
 
 My solutions with different programming languages:
 
-- [Deno - TypeScript](/deno)
-- [Bun - JavaScript](/bun)
+- [Deno - TypeScript](./deno)
+- [Bun - JavaScript](./bun)
