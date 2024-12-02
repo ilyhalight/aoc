@@ -1,6 +1,6 @@
-import { getFile } from "../../../utils/bun/utils";
+import { getFile } from "../../../utils/bun/utils.js";
 
-const input = await getFile(import.meta);
+const input = await getFile(import.meta.dir);
 
 const [left, right] = input
   .split("\n")
