@@ -1,4 +1,4 @@
-import { getFile } from "../../../utils/bun/utils.js";
+import { getFile } from "../../../utils/deno/utils.ts";
 
 const input = await getFile(import.meta.dirname!);
 
