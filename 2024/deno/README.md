@@ -11,7 +11,7 @@
 Replace <number> with number of day, e.g. day1
 
 1. Install [Deno](https://deno.com)
-2. Write your input to `day<number>/input.txt` (without ending with new line). If you want to check sample data, just remove input.txt
+2. Write your input to `day<number>/input.txt` (without ending with new line). If you want to check sample data, don't create input.txt
 3. Run in terminal:
 
 ```
