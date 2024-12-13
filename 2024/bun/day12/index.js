@@ -33,10 +33,20 @@ const getNearbyPlotsWithDirection = (plots, x, y) => {
   const nearbyPlots = getNearbyPlots(plots, x, y);
   return {
     top: nearbyPlots.find(([plotX, plotY]) => plotX === x && plotY === y - 1),
+    topLeft: plots.find(([plotX, plotY]) => plotX === x - 1 && plotY === y - 1),
     left: nearbyPlots.find(([plotX, plotY]) => plotX === x - 1 && plotY === y),
     right: nearbyPlots.find(([plotX, plotY]) => plotX === x + 1 && plotY === y),
+    topRight: plots.find(
+      ([plotX, plotY]) => plotX === x + 1 && plotY === y - 1
+    ),
     bottom: nearbyPlots.find(
       ([plotX, plotY]) => plotX === x && plotY === y + 1
+    ),
+    bottomLeft: plots.find(
+      ([plotX, plotY]) => plotX === x - 1 && plotY === y + 1
+    ),
+    bottomRight: plots.find(
+      ([plotX, plotY]) => plotX === x + 1 && plotY === y + 1
     ),
     nearby: nearbyPlots,
   };
@@ -84,132 +94,117 @@ const regionsWithData = new Map();
 let total = 0;
 let totalPartTwo = 0;
 
+const pushIfle = (arr, value, maxCount = 4) => {
+  const [valX, valY] = value;
+  const count = arr.filter(([x, y]) => x === valX && y === valY);
+  if (count.length < maxCount) {
+    arr.push(value);
+  }
+
+  return arr;
+};
+
 for (const [symbol, regionList] of regions) {
   const regions = [];
   for (const region of regionList) {
     let perimeter = 0;
     const { plots, id } = region;
     const sides = [];
-    const debug = [];
     for (let i = 0; i < plots.length; i++) {
       const plot = plots[i];
       const [x, y] = plot;
-      const { nearby, top, left, bottom, right } = getNearbyPlotsWithDirection(
-        plots,
-        x,
-        y
-      );
-      // console.log(plot, top, left, right, bottom);
+      const {
+        nearby,
+        topLeft,
+        top,
+        topRight,
+        left,
+        bottomLeft,
+        bottom,
+        bottomRight,
+        right,
+      } = getNearbyPlotsWithDirection(plots, x, y);
 
-      if (!top) {
-        sides.push([x, y - 1]);
+      // console.log({
+      //   topLeft,
+      //   top,
+      //   topRight,
+      //   right,
+      //   bottomRight,
+      //   bottom,
+      //   bottomLeft,
+      //   left,
+      // });
+
+      if (!topLeft && ((!top && !left) || (top && left))) {
+        pushIfle(sides, [x - 1, y - 1]);
+        // console.log("add topLeft");
       }
 
-      if (!left) {
-        sides.push([x - 1, y]);
+      if (
+        !top &&
+        topLeft &&
+        topRight &&
+        ((left && !right) || (!left && right))
+      ) {
+        pushIfle(sides, [x, y - 1]);
+        // console.log("add right");
       }
 
-      if (!right) {
-        sides.push([x + 1, y]);
+      if (!topRight && ((!top && !right) || (top && right))) {
+        pushIfle(sides, [x + 1, y - 1]);
+        // console.log("add topRight");
       }
 
-      if (!bottom) {
-        sides.push([x, y + 1]);
+      if (
+        !right &&
+        topRight &&
+        bottomRight &&
+        ((top && !bottom) || (!top && bottom))
+      ) {
+        pushIfle(sides, [x + 1, y]);
+        // console.log("add bottom");
       }
 
-      debug.push([
-        {
-          top: top ? undefined : [x, y - 1],
-          left: left ? undefined : [x - 1, y],
-          right: right ? undefined : [x + 1, y],
-          bottom: bottom ? undefined : [x, y + 1],
-          plot,
-        },
-      ]);
+      if (!bottomRight && ((!bottom && !right) || (bottom && right))) {
+        pushIfle(sides, [x + 1, y + 1]);
+        // console.log("add bottomRight");
+      }
+
+      if (
+        !bottom &&
+        bottomLeft &&
+        bottomRight &&
+        ((left && !right) || (!left && right))
+      ) {
+        pushIfle(sides, [x, y + 1]);
+        // console.log("add bottom");
+      }
+
+      if (!bottomLeft && ((!bottom && !left) || (bottom && left))) {
+        pushIfle(sides, [x - 1, y + 1]);
+        // console.log("add bottomLeft");
+      }
+
+      if (
+        !left &&
+        topLeft &&
+        bottomLeft &&
+        ((top && !bottom) || (!top && bottom))
+      ) {
+        pushIfle(sides, [x - 1, y]);
+        // console.log("add bottom");
+      }
+
       // console.log("sides", sides);
       perimeter += 4 - nearby.length;
     }
 
     const area = plots.length;
-    const clearedSides = sides.filter(
-      ([sideX, sideY]) =>
-        !plots.some(([plotX, plotY]) => plotX === sideX && plotY === sideY)
-    );
 
-    const horizontalLines = [];
-    const verticalLines = [];
-    for (let i = 0; i < sides.length; i++) {
-      const [sideX, sideY] = sides[i];
-      const horizontalId = horizontalLines.findIndex(
-        (line) =>
-          line.some(([x, y]) => isNearest(x, sideX) && sideY === y) &&
-          !line.some(([x, y]) => x === sideX && y === sideY)
-      );
-      const verticalId = verticalLines.findIndex((line) =>
-        line.some(
-          ([x, y]) =>
-            x === sideX &&
-            isNearest(y, sideY) &&
-            !line.some(([x, y]) => x === sideX && y === sideY)
-        )
-      );
-      // console.log(sides[i], horizontalId, verticalId);
-      if (horizontalId !== -1) {
-        horizontalLines[horizontalId].push([sideX, sideY]);
-      }
-
-      if (verticalId !== -1) {
-        verticalLines[verticalId].push([sideX, sideY]);
-      }
-
-      if (horizontalId !== -1 || verticalId !== -1) {
-        continue;
-      }
-
-      horizontalLines.push([[sideX, sideY]]);
-      verticalLines.push([[sideX, sideY]]);
-    }
-    const possible = [];
-    const lines = horizontalLines.reduce((result, line, idx) => {
-      result.push(line.length === 1 ? verticalLines[idx] : line);
-      if (line.length > 1 && verticalLines[idx].length > 1) {
-        const isDifferent = line.some(([x, y], i) => {
-          const vLine = verticalLines[idx][i];
-          if (!vLine) {
-            return true;
-          }
-
-          const [vX, vY] = vLine;
-          return x !== vX || y !== vY;
-        });
-        if (isDifferent) {
-          possible.push(verticalLines[idx]);
-        }
-      }
-
-      if (line.length === 2 && idx < horizontalLines.length - 1) {
-        const isSingleLine = line.every(([x, y], i) => {
-          if (verticalLines[idx + i].length !== 1) {
-            return false; // TODO: need set true for some cases
-          }
-
-          const [vX, vY] = verticalLines[idx + i][0];
-          return x === vX && y === vY;
-        });
-        if (isSingleLine) {
-          result.push([verticalLines[idx], verticalLines[idx + 1]]);
-        }
-      }
-
-      return result;
-    }, []);
-
-    if (lines.length % 2 !== 0 && possible.length) {
-      lines.push(
-        ...(possible.length % 2 === 0
-          ? possible.slice(0, possible.length - 1)
-          : possible)
-      );
+    if (sides.length % 2 !== 0) {
+      // idk
+      sides.push([0, 0]);
     }
 
     regions.push({
@@ -217,15 +212,12 @@ for (const [symbol, regionList] of regions) {
       plots,
       area,
       perimeter,
-      // debug,
-      clearedSides,
-      clearedCount: clearedSides.length,
-      sides: lines,
-      sidesCount: lines.length,
+      sides,
+      sidesCount: sides.length,
     });
 
     total += area * perimeter;
-    totalPartTwo += area * lines.length;
+    totalPartTwo += area * sides.length;
   }
 
   regionsWithData.set(symbol, regions);
