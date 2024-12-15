@@ -71,8 +71,6 @@ const findBySymbol = (symbol) => {
   }
 };
 
-// console.log(startMap.map((v) => v.join("")).join("\n"));
-
 for (const move of moves) {
   // console.log(move);
   const positions = findBySymbol(move);
@@ -85,21 +83,15 @@ for (const move of moves) {
     continue;
   }
 
-  // console.log(positions);
   for (let i = positions.length - 1; i > 0; i--) {
-    // console.log(i);
     const [x, y] = positions[i];
     const [prevX, prevY] = positions[i - 1];
-    // console.log(startMap[y][x], startMap[prevY][prevX]);
     startMap[y][x] = startMap[prevY][prevX];
     startMap[prevY][prevX] = ".";
   }
-
-  // console.log("\n\n" + startMap.map((v) => v.join("")).join("\n"));
 }
 
 startMap[posY][posX] = "@";
-// console.log("\n\n" + startMap.map((v) => v.join("")).join("\n"));
 
 const total = startMap.reduce((total, line, y) => {
   const lineSum = line.reduce((sum, symbol, x) => {
@@ -113,8 +105,4 @@ const total = startMap.reduce((total, line, y) => {
   return total + lineSum;
 }, 0);
 
-// const total = 0;
-// const totalPartTwo = 0;
-
 console.log(`Part 1: ${total}`);
-// console.log(`Part 2: ${totalPartTwo}`);
