@@ -23,7 +23,6 @@ for (const connection of connections) {
   alreadyConnected.add(right);
 }
 
-// console.log(connectionTree);
 const checkedClients = new Set();
 
 const checkTree = (client, parent = "", depth = 0) => {
@@ -37,20 +36,15 @@ const checkTree = (client, parent = "", depth = 0) => {
     return pairs;
   }
 
-  // console.log(client, parent, childrens);
-
   return childrens
     .filter((child) => child !== parent)
     .map((child) => {
       checkedClients.add(child);
       const childConnections = connectionTree.get(child);
       return childConnections.includes(parent) ? child : false;
-      // return checkTree(child, parent, depth + 1) ? child : false;
     })
     .filter((child) => child);
 };
-
-// console.log("test");
 
 const pairs = [];
 
@@ -69,7 +63,6 @@ for (const [connection, childrens] of connectionTree.entries()) {
   }
 
   const arrPairConnectionss = Array.from(pairConnections);
-  // console.log(connection, arrPairConnectionss);
   for (let i = 0; i < arrPairConnectionss.length; i++) {
     const pair = arrPairConnectionss[i];
     for (let j = i + 1; j < arrPairConnectionss.length; j++) {
