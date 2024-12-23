@@ -2,14 +2,14 @@ import { getFile } from "../../../utils/deno/utils.ts";
 
 const input = await getFile(import.meta.dirname!);
 
-let [patterns, towels] = input.replaceAll("\r", "").split("\n\n");
+const [inputPatterns, inputTowels] = input.replaceAll("\r", "").split("\n\n");
 
-patterns = patterns.split(", ").sort((a, b) => b.length - a.length);
-towels = towels.split("\n");
+const patterns = inputPatterns.split(", ").sort((a, b) => b.length - a.length);
+const towels = inputTowels.split("\n");
 
 const cache = new Map();
 
-const checkPatterns = (towel, level = 0) => {
+const checkPatterns = (towel: string, level = 0): number => {
   if (!towel.length) {
     return 1;
   }
