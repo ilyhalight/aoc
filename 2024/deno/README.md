@@ -17,3 +17,14 @@ Replace <number> with number of day, e.g. day1
 ```
 deno run --allow-read day<number>/index.ts
 ```
+
+## Unresolved parts
+
+List of all unresolved parts:
+
+- day16 (full)
+- day17 (part 2)
+- day18 (full)
+- day20 (full)
+- day21 (full)
+- day24 (part 2)
