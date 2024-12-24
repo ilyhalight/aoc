@@ -10,9 +10,13 @@ Replace <number> with number of day, e.g. day1
 
 1. Install [Bun.sh](https://bun.sh/)
 2. Write your input to `day<number>/input.txt` (without ending with new line). If you want to check sample data, don't create input.txt
-3. Run in terminal:
+3. Run in terminal (some days has only parted filename, e.g. part1.ts and part2.ts):
 
+```bash
+bun day<number>
 ```
+
+```bash
 bun run day<number>/index.js
 ```
 

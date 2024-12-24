@@ -7,5 +7,30 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "day1": "bun run day1/index.js",
+    "day2": "bun run day2/index.js",
+    "day3": "bun run day3/index.js",
+    "day4": "bun run day4/index.js",
+    "day5": "bun run day5/index.js",
+    "day6": "bun run day6/index.js",
+    "day7": "bun run day7/index.js",
+    "day8": "bun run day8/index.js",
+    "day9": "bun run day9/index.js",
+    "day10": "bun run day10/index.js",
+    "day11": "bun run day11/index.js",
+    "day12": "bun run day12/index.js",
+    "day13": "bun run day13/index.js",
+    "day13:1": "bun run day13/part1.js",
+    "day14": "bun run day14/index.js",
+    "day15:1": "bun run day15/part1.js",
+    "day15:2": "bun run day15/part2.js",
+    "day15:2-vusalize": "bun run day15/part2-visualize.js",
+    "day17:1": "bun run day17/part1.js",
+    "day19": "bun run day19/index.js",
+    "day22": "bun run day22/index.js",
+    "day23": "bun run day23/index.js",
+    "day24:1": "bun run day24/part1.js"
   }
 }
