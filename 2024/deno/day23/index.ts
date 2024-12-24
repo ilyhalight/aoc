@@ -47,12 +47,9 @@ const checkTree = (client: string, parent = "", depth = 0) => {
 };
 
 const pairs = [];
+const passwords = new Map();
 
 for (const [connection, childrens] of connectionTree.entries()) {
-  if (!connection.startsWith("t")) {
-    continue;
-  }
-
   checkedClients.clear();
   const pairConnections = new Set<string>();
   for (const child of childrens) {
@@ -63,8 +60,17 @@ for (const [connection, childrens] of connectionTree.entries()) {
   }
 
   const arrPairConnectionss = Array.from(pairConnections);
+  const temp = [];
   for (let i = 0; i < arrPairConnectionss.length; i++) {
     const pair = arrPairConnectionss[i];
+    if (connectionTree.get(pair)!.includes(connection)) {
+      temp.push(pair);
+    }
+
+    if (!connection.startsWith("t")) {
+      continue;
+    }
+
     for (let j = i + 1; j < arrPairConnectionss.length; j++) {
       const nextPair = arrPairConnectionss[j];
       if (connectionTree.get(nextPair)!.includes(pair)) {
@@ -72,34 +78,12 @@ for (const [connection, childrens] of connectionTree.entries()) {
       }
     }
   }
-}
-
-const total = new Set(pairs);
-const passwords = new Map();
-for (const [connection, childrens] of connectionTree.entries()) {
-  checkedClients.clear();
-  const pairConnections = new Set<string>();
-  for (const child of childrens) {
-    const childData = checkTree(child, connection);
-    for (const data of childData) {
-      pairConnections.add(data);
-    }
-  }
-
-  const arrPairConnectionss = Array.from(pairConnections);
-
-  const temp = [];
-  for (let i = 0; i < arrPairConnectionss.length; i++) {
-    const pair = arrPairConnectionss[i];
-    if (connectionTree.get(pair)!.includes(connection)) {
-      temp.push(pair);
-    }
-  }
 
   const key = [connection, ...temp].sort().join(",");
   passwords.set(key, passwords.has(key) ? passwords.get(key) + 1 : 1);
 }
 
+const total = new Set(pairs);
 const totalPartTwo = passwords.entries().reduce(
   ([password, count], [key, val]) => {
     if (val > count) {
