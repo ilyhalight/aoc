@@ -15,7 +15,7 @@ Replace <number> with number of day, e.g. day1
 3. Run in terminal (some days has only parted filename, e.g. part1.ts and part2.ts):
 
 ```bash
-deno task day<number>/index.ts
+deno task day<number>
 ```
 
 or
