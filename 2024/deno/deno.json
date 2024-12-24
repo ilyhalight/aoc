@@ -1,3 +1,25 @@
 {
-  "tasks": {}
+  "tasks": {
+    "day1": "deno run --allow-read day1/index.ts",
+    "day2": "deno run --allow-read day2/index.ts",
+    "day3": "deno run --allow-read day3/index.ts",
+    "day4": "deno run --allow-read day4/index.ts",
+    "day5": "deno run --allow-read day5/index.ts",
+    "day6": "deno run --allow-read day6/index.ts",
+    "day7": "deno run --allow-read day7/index.ts",
+    "day8": "deno run --allow-read day8/index.ts",
+    "day9": "deno run --allow-read day9/index.ts",
+    "day10": "deno run --allow-read day10/index.ts",
+    "day11": "deno run --allow-read day11/index.ts",
+    "day12": "deno run --allow-read day12/index.ts",
+    "day13": "deno run --allow-read day13/index.ts",
+    "day13:1": "deno run --allow-read day13/part1.ts",
+    "day14": "deno run --allow-read day14/index.ts",
+    "day15:1": "deno run --allow-read day15/part1.ts",
+    "day15:2": "deno run --allow-read day15/part2.ts",
+    "day19": "deno run --allow-read day19/index.ts",
+    "day22": "deno run --allow-read day22/index.ts",
+    "day23": "deno run --allow-read day23/index.ts",
+    "day24:1": "deno run --allow-read day24/part1.ts"
+  }
 }
