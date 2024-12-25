@@ -31,6 +31,7 @@
     "day19": "bun run day19/index.js",
     "day22": "bun run day22/index.js",
     "day23": "bun run day23/index.js",
-    "day24:1": "bun run day24/part1.js"
+    "day24:1": "bun run day24/part1.js",
+    "day25:1": "bun run day25/part1.js"
   }
 }
