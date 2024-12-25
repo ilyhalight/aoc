@@ -21,6 +21,7 @@
     "day19": "deno run --allow-read day19/index.ts",
     "day22": "deno run --allow-read day22/index.ts",
     "day23": "deno run --allow-read day23/index.ts",
-    "day24:1": "deno run --allow-read day24/part1.ts"
+    "day24:1": "deno run --allow-read day24/part1.ts",
+    "day25:1": "deno run --allow-read day25/part1.ts"
   }
 }
