@@ -10,3 +10,4 @@ My solutions with different programming languages:
 
 - [Deno - TypeScript](./deno)
 - [Bun - JavaScript](./bun)
+- [Rust](./rust)
