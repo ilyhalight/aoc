@@ -1,6 +1,6 @@
 ## AoC 2024 with Rust
 
-✨ My solutions for Advent of Code with Bun
+✨ My solutions for Advent of Code with Rust
 
 [Take part in the event](https://adventofcode.com/2024)
 
