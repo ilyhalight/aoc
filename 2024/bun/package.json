@@ -27,6 +27,7 @@
     "day15:1": "bun run day15/part1.js",
     "day15:2": "bun run day15/part2.js",
     "day15:2-vusalize": "bun run day15/part2-visualize.js",
+    "day16": "bun run day16/index.js",
     "day17:1": "bun run day17/part1.js",
     "day19": "bun run day19/index.js",
     "day21:1": "bun run day21/part1.js",
