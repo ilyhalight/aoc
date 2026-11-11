@@ -1,0 +1,15 @@
+{
+  "name": "2018",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "day1": "bun run src/day1/index.js"
+  }
+}

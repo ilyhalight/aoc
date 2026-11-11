@@ -5,6 +5,7 @@
 ## Solutions by years:
 
 - [2024](/2024)
+- [2018](/2018) (made in 2026)
 
 ## About Advent of Code
 
