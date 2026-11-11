@@ -20,8 +20,6 @@ cargo run --manifest-path=day<number>/Cargo.toml
 
 List of all unresolved parts:
 
-- day2 (full)
-- day3 (full)
 - day4 (full)
 - day5 (full)
 - day6 (full)
