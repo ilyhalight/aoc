@@ -10,6 +10,7 @@
     "typescript": "^5"
   },
   "scripts": {
-    "day1": "bun run src/day1/index.js"
+    "day1": "bun run src/day1/index.js",
+    "day2": "bun run src/day2/index.js"
   }
 }
